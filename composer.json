@@ -1,0 +1,17 @@
+{
+    "name": "yaroslav/php-course",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "src/"
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "lint": "phpcs --standard=./.phpcs.xml",
+        "lintfix": "phpcbf --standard=./.phpcs.xml"
+    }
+}
