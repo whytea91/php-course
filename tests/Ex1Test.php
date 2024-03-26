@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use MyApp\Ex1;
 
 final class Ex1Test extends TestCase
 {
-    protected $ex1;
+    protected Ex1 $ex1;
 
     protected function setUp(): void
     {
@@ -15,7 +15,7 @@ final class Ex1Test extends TestCase
     }
 
     /**
-     * @dataProvider binarySumProviderWrong
+     * @dataProvider binarySumWrongInputProvider
      */
     public function testBinarySumWrongInput(string $num1, string $num2): void
     {
@@ -24,12 +24,13 @@ final class Ex1Test extends TestCase
         $this->ex1->binarySum($num1, $num2);
     }
 
-    public function binarySumProviderWrong(): array
+    public function binarySumWrongInputProvider(): array
     {
         return [
             ['1', ''],
             ['', '1'],
             ['', ''],
+            ['abc', 'dfg'],
         ];
     }
 
@@ -51,7 +52,7 @@ final class Ex1Test extends TestCase
             ['111', '10', '1001'],
             ['01', '001', '10'],
             [$longNumber, '1', $expectedLongNumber],
-            ['abc', 'dfg', '0'],
+            ['0  1', ' 0 0  1  ', '10'],
         ];
     }
 }

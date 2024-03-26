@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
 use MyApp\Ex2;
 
 final class Ex2Test extends TestCase
 {
-    protected $ex2;
+    protected Ex2 $ex2;
 
     protected function setUp(): void
     {
@@ -15,41 +15,27 @@ final class Ex2Test extends TestCase
     }
 
     /**
-     * @dataProvider isBalancedProviderTrue
+     * @dataProvider isBalancedProvider
      */
-    public function testisBalancedTrue(string $str): void
+    public function testIsBalanced(string $str, bool $expected): void
     {
-        $this->assertTrue($this->ex2->isBalanced($str));
+        $this->assertEquals($expected, $this->ex2->isBalanced($str));
     }
 
-    public function isBalancedProviderTrue(): array
+    public function isBalancedProvider(): array
     {
         return [
-            ['()'],
-            ['(())'],
-            ['(()((((())))))'],
-            [''],
-        ];
-    }
-
-    /**
-     * @dataProvider isBalancedProviderFalse
-     */
-    public function testisBalancedFalse(string $str): void
-    {
-        $this->assertFalse($this->ex2->isBalanced($str));
-    }
-
-    public function isBalancedProviderFalse(): array
-    {
-        return [
-            ['(('],
-            ['())('],
-            ['((())'],
-            ['(())())'],
-            ['(()(()))))'],
-            [')'],
-            ['())(()'],
+            ['()', true],
+            ['(())', true],
+            ['(()((((())))))', true],
+            ['', true],
+            ['((', false],
+            ['())(', false],
+            ['((())', false],
+            ['(())())', false],
+            ['(()(()))))',false],
+            [')',false],
+            ['())(()',false],
         ];
     }
 }

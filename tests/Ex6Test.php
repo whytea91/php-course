@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use MyApp\Ex6;
 use PHPUnit\Framework\TestCase;
 
-class Ex6Test extends TestCase
+final class Ex6Test extends TestCase
 {
-    protected $ex6;
+    protected Ex6 $ex6;
 
     protected function setUp(): void
     {

@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use MyApp\Ex4;
 use PHPUnit\Framework\TestCase;
 
-class Ex4Test extends TestCase
+final class Ex4Test extends TestCase
 {
-    protected $ex4;
+    protected Ex4 $ex4;
 
     protected function setUp(): void
     {
@@ -15,35 +15,21 @@ class Ex4Test extends TestCase
     }
 
     /**
-     * @dataProvider isHappyProviderTrue
+     * @dataProvider isHappyProvider
      */
-    public function testIsHappyTrue(string $ticket): void
+    public function testIsHappy(string $ticket, bool $expected): void
     {
-        $this->assertTrue($this->ex4->isHappy($ticket));
+        $this->assertEquals($expected, $this->ex4->isHappy($ticket));
     }
 
-    public function isHappyProviderTrue(): array
+    public function isHappyProvider(): array
     {
         return [
-            ['123321'],
-            [''],
-        ];
-    }
-
-    /**
-     * @dataProvider isHappyProviderFalse
-     */
-    public function testIsHappyFalse(string $ticket): void
-    {
-        $this->assertFalse($this->ex4->isHappy($ticket));
-    }
-
-    public function isHappyProviderFalse(): array
-    {
-        return [
-            ['123456'],
-            ['12345'],
-            ['9'],
+            ['123321', true],
+            ['', true],
+            ['123456', false],
+            ['12345', false],
+            ['9', false],
         ];
     }
 }

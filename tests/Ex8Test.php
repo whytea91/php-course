@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use MyApp\Ex8;
 use PHPUnit\Framework\TestCase;
 
-class Ex8Test extends TestCase
+final class Ex8Test extends TestCase
 {
-    protected $ex8;
+    protected Ex8 $ex8;
 
     protected function setUp(): void
     {
@@ -15,44 +15,30 @@ class Ex8Test extends TestCase
     }
 
     /**
-     * @dataProvider isPowerOfThreeProviderTrue
+     * @dataProvider isPowerOfThreeProvider
      */
-    public function testIsPowerOfThreeTrue(int $x): void
+    public function testIsPowerOfThree(int $x, bool $expected): void
     {
-        $this->assertTrue($this->ex8->isPowerOfThree($x));
+        $this->assertEquals($expected, $this->ex8->isPowerOfThree($x));
     }
 
-    public function isPowerOfThreeProviderTrue(): array
+    public function isPowerOfThreeProvider(): array
     {
         return [
-            [1],
-            [3],
-            [9],
-            [27],
-            [81],
-            [59049],
-            [3486784401],
-            [10460353203],
-            [94143178827],
-        ];
-    }
-
-    /**
-     * @dataProvider isPowerOfThreeProviderFalse
-     */
-    public function testIsPowerOfThreeFalse(int $x): void
-    {
-        $this->assertFalse($this->ex8->isPowerOfThree($x));
-    }
-
-    public function isPowerOfThreeProviderFalse(): array
-    {
-        return [
-            [0],
-            [5],
-            [6],
-            [999999],
-            [1234567890],
+            [1, true],
+            [3, true],
+            [9, true],
+            [27, true],
+            [81, true],
+            [59049, true],
+            [3486784401, true],
+            [10460353203, true],
+            [94143178827, true],
+            [0, false],
+            [5, false],
+            [6, false],
+            [999999, false],
+            [1234567890, false],
         ];
     }
 }

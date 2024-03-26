@@ -1,13 +1,13 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use MyApp\Ex5;
 use PHPUnit\Framework\TestCase;
 
-class Ex5Test extends TestCase
+final class Ex5Test extends TestCase
 {
-    protected $ex5;
+    protected Ex5 $ex5;
 
     protected function setUp(): void
     {
@@ -19,7 +19,7 @@ class Ex5Test extends TestCase
      */
     public function testFizzBuzzGenerate(int $begin, int $end, string $expected): void
     {
-        $this->assertEquals($expected, $this->ex5->FizzBuzzGenerate($begin, $end));
+        $this->assertEquals($expected, $this->ex5->fizzBuzzGenerate($begin, $end));
     }
 
     public function fizzBuzzProvider(): array
