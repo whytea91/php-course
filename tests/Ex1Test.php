@@ -2,8 +2,8 @@
 
 namespace Tests;
 
+use MyApp\Tasks\Ex1;
 use PHPUnit\Framework\TestCase;
-use MyApp\Ex1;
 
 final class Ex1Test extends TestCase
 {
