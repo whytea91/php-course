@@ -6,10 +6,13 @@ class Ex5
 {
     public function fizzBuzz(int $begin, int $end): void
     {
+        echo $this->fizzBuzzGenerate($begin, $end);
+    }
+    public function fizzBuzzGenerate(int $begin, int $end): string
+    {
         $result = '';
         if ($begin > $end) {
-            print_r($result);
-            return;
+            return $result;
         }
         for ($i = $begin; $i <= $end; $i++) {
             if (($i % 3 === 0) && ($i % 5 === 0)) {
@@ -22,6 +25,6 @@ class Ex5
                 $result .= ' ' . $i;
             }
         }
-        print_r(trim($result));
+        return trim($result);
     }
 }
