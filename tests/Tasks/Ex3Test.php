@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Tasks;
 
 use MyApp\Tasks\Ex3;
 use PHPUnit\Framework\TestCase;

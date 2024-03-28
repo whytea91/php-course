@@ -2,9 +2,9 @@
 
 namespace MyApp\Logger;
 
-class StdoutLogger
+class StdoutLogger extends AbstractLogger
 {
-    public function log(string $message): void
+    protected function log(string $message): void
     {
         echo $message . PHP_EOL;
     }

@@ -1,17 +1,22 @@
 <?php
 
-namespace Tests;
+namespace Tests\Tasks;
 
+use MyApp\Logger\FakeLogger;
 use MyApp\Tasks\Ex1;
 use PHPUnit\Framework\TestCase;
 
 final class Ex1Test extends TestCase
 {
     protected Ex1 $ex1;
+    protected FakeLogger $logger;
+    protected string $timestamp;
 
     protected function setUp(): void
     {
-        $this->ex1 = new Ex1();
+        $this->logger = new FakeLogger();
+        $this->ex1 = new Ex1($this->logger);
+        $this->timestamp = date('Y-m-d H:i:s');
     }
 
     /**
@@ -19,9 +24,13 @@ final class Ex1Test extends TestCase
      */
     public function testBinarySumWrongInput(string $num1, string $num2): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Wrong input data');
-        $this->ex1->binarySum($num1, $num2);
+        try {
+            $this->ex1->binarySum($num1, $num2);
+        } catch (\Throwable $e) {
+            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+            $this->assertEquals('Wrong input data', $e->getMessage());
+        }
+        $this->assertEquals("[$this->timestamp] [ERR] Wrong input data", $this->logger->getLastMessage());
     }
 
     public function binarySumWrongInputProvider(): array
@@ -40,6 +49,10 @@ final class Ex1Test extends TestCase
     public function testBinarySum(string $num1, string $num2, string $expected): void
     {
         $this->assertEquals($expected, $this->ex1->binarySum($num1, $num2));
+        $this->assertEquals(
+            "[$this->timestamp] [INFO] Binary sum of $num1 and $num2 is $expected",
+            $this->logger->getLastMessage()
+        );
     }
 
     public function binarySumProvider(): array
