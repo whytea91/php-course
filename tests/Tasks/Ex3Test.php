@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests;
+namespace Tests\Tasks;
 
+use MyApp\Tasks\Ex3;
 use PHPUnit\Framework\TestCase;
-use MyApp\Ex3;
 
 final class Ex3Test extends TestCase
 {
