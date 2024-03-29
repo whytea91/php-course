@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests;
+namespace Tests\Tasks;
 
-use MyApp\Ex6;
+use MyApp\Tasks\Ex6;
 use PHPUnit\Framework\TestCase;
 
 final class Ex6Test extends TestCase
