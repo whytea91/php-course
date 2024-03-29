@@ -20,12 +20,12 @@ $logger = $loggerFactory->getLogger();
 $one = 111;
 $two = 101;
 echo "Binary Sum of $one and $two " . PHP_EOL;
-(new Ex1($logger))->binarySum($one, $two);
+echo (new Ex1($logger))->binarySum($one, $two);
 echo "\n";
 
 $brackets = '((';
 echo "Check if the string $brackets is balanced or not: " . PHP_EOL;
-(new Ex2($logger))->isBalanced($brackets) ? 'balanced' : 'not balanced';
+echo (new Ex2($logger))->isBalanced($brackets) ? 'balanced' : 'not balanced';
 echo "\n";
 
 echo 'The number is or is not perfect: ' . PHP_EOL;

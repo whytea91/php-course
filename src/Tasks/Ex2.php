@@ -16,8 +16,7 @@ class Ex2
     public function isBalanced(string $brackets): bool
     {
         if ($brackets === '') {
-            $this->logger->info("The string $brackets is balanced");
-            return true;
+            return $this->withLog($brackets, true);
         }
 
         $cleaned = preg_replace('/[^\(\)\[\]\{\}]/', '', $brackets);
@@ -35,17 +34,23 @@ class Ex2
                 --$bracketsCounter;
             }
             if ($bracketsCounter < 0) {
-                $this->logger->info("The string $brackets is not balanced");
-                return false;
+                return $this->withLog($brackets, false);
             }
         }
 
         if ($bracketsCounter === 0) {
-            $this->logger->info("The string $brackets is balanced");
-            return true;
+            return $this->withLog($brackets, true);
         }
 
-        $this->logger->info("The string $brackets is not balanced");
-        return false;
+        return $this->withLog($brackets, false);
+    }
+
+    private function withLog(string $brackets, bool $ok): bool
+    {
+        if ($ok) {
+            $this->logger->info("The string $brackets is balanced");
+        } else {
+            $this->logger->info("The string $brackets is not balanced");
+        } return $ok;
     }
 }

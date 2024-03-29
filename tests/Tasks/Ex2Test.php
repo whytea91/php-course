@@ -10,13 +10,11 @@ final class Ex2Test extends TestCase
 {
     protected Ex2 $ex2;
     protected FakeLogger $logger;
-    protected string $timestamp;
 
     protected function setUp(): void
     {
         $this->logger = new FakeLogger();
         $this->ex2 = new Ex2($this->logger);
-        $this->timestamp = date('Y-m-d H:i:s');
     }
 
     /**
@@ -28,14 +26,14 @@ final class Ex2Test extends TestCase
 
         if ($expected === true) {
             $this->assertEquals(
-                "[$this->timestamp] [INFO] The string $str is balanced",
+                "[INFO] The string $str is balanced",
                 $this->logger->getLastMessage()
             );
         }
 
         if ($expected === false) {
             $this->assertEquals(
-                "[$this->timestamp] [INFO] The string $str is not balanced",
+                "[INFO] The string $str is not balanced",
                 $this->logger->getLastMessage()
             );
         }
@@ -70,7 +68,7 @@ final class Ex2Test extends TestCase
             $this->assertEquals('Wrong input data: brackets sequence expected', $e->getMessage());
         }
         $this->assertEquals(
-            "[$this->timestamp] [ERR] Wrong input data: brackets sequence expected",
+            "[ERR] Wrong input data: brackets sequence expected",
             $this->logger->getLastMessage()
         );
     }

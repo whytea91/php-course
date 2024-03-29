@@ -15,4 +15,9 @@ class FakeLogger extends AbstractLogger
     {
         return $this->lastMessage;
     }
+
+    protected function logWithTimestamp(string $message): void
+    {
+        $this->log($message);
+    }
 }
