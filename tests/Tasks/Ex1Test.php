@@ -10,13 +10,11 @@ final class Ex1Test extends TestCase
 {
     protected Ex1 $ex1;
     protected FakeLogger $logger;
-    protected string $timestamp;
 
     protected function setUp(): void
     {
         $this->logger = new FakeLogger();
         $this->ex1 = new Ex1($this->logger);
-        $this->timestamp = date('Y-m-d H:i:s');
     }
 
     /**
@@ -30,7 +28,7 @@ final class Ex1Test extends TestCase
             $this->assertInstanceOf(\InvalidArgumentException::class, $e);
             $this->assertEquals('Wrong input data', $e->getMessage());
         }
-        $this->assertEquals("[$this->timestamp] [ERR] Wrong input data", $this->logger->getLastMessage());
+        $this->assertEquals("[ERR] Wrong input data", $this->logger->getLastMessage());
     }
 
     public function binarySumWrongInputProvider(): array
@@ -50,7 +48,7 @@ final class Ex1Test extends TestCase
     {
         $this->assertEquals($expected, $this->ex1->binarySum($num1, $num2));
         $this->assertEquals(
-            "[$this->timestamp] [INFO] Binary sum of $num1 and $num2 is $expected",
+            "[INFO] Binary sum of $num1 and $num2 is $expected",
             $this->logger->getLastMessage()
         );
     }
